@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImportaAI • Trae productos de EE.UU. a Colombia y Sudamérica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@600&amp;display=swap');
+        
+        :root {
+            --primary: #0A66C2;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Poppins', system_ui, sans-serif;
+            font-weight: 600;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #0A66C2 0%, #1E40AF 100%);
+        }
+
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .nav-active {
+            color: #0A66C2;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .metric {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .ai-thinking {
+            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .breakdown-row {
+            transition: background-color 0.2s ease;
+        }
+
+        .breakdown-row:hover {
+            background-color: #f8fafc;
+        }
+
+        .colombia-flag {
+            background: linear-gradient(#FFCC00 33%, #0033A0 33%, #0033A0 66%, #FFCC00 66%);
+            background-size: 100% 100%;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .option-card {
+            transition: all 0.3s ease;
+        }
+
+        .option-card.active {
+            border-color: #0A66C2;
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.1);
+        }
+
+        .modern-shadow {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-11 h-11 bg-[#0A66C2] rounded-2xl flex items-center justify-center shadow-lg">
+                        <i class="fa-solid fa-plane text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-display text-3xl font-bold tracking-tighter">Importa</span>
+                        <span class="font-display text-3xl font-bold tracking-tighter text-[#0A66C2]">AI</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                    <a href="#como-funciona" class="hover:text-[#0A66C2] transition-colors">Cómo funciona</a>
+                    <a href="#beneficios" class="hover:text-[#0A66C2] transition-colors">Beneficios</a>
+                    <a href="#precios" class="hover:text-[#0A66C2] transition-colors">Precios</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <!-- Language Toggle -->
+                    <div class="flex items-center bg-slate-100 rounded-3xl p-1 text-xs font-semibold">
+                        <button onclick="switchLanguage('es')" id="lang-es"
+                                class="px-4 py-1.5 rounded-3xl bg-white shadow-sm text-slate-900">ES</button>
+                        <button onclick="switchLanguage('en')" id="lang-en"
+                                class="px-4 py-1.5 rounded-3xl text-slate-500 hover:text-slate-700">EN</button>
+                    </div>
+
+                    <button onclick="showLoginModal()"
+                            class="hidden md:block px-6 py-2.5 text-sm font-semibold border border-slate-300 hover:bg-slate-50 rounded-3xl transition-colors">
+                        Iniciar sesión
+                    </button>
+                    
+                    <button onclick="startDemo()"
+                            class="px-6 py-2.5 bg-[#0A66C2] hover:bg-[#0855A3] text-white text-sm font-semibold rounded-3xl transition-all active:scale-[0.985]">
+                        Empezar gratis
+                    </button>
+                    
+                    <!-- Mobile menu -->
+                    <button class="md:hidden w-10 h-10 flex items-center justify-center text-slate-600">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-bg text-white">
+        <div class="max-w-5xl mx-auto px-6 pt-16 pb-24">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-x-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-3xl text-sm mb-6">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span class="font-medium">Ahora disponible en Colombia • Expansión a Perú y Ecuador en marzo 2026</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-display font-bold tracking-tighter leading-none mb-6">
+                    Trae cualquier<br>producto de<br>EE.UU. a<br>Colombia
+                </h1>
+                
+                <p class="max-w-md text-xl text-blue-100 mb-10">
+                    Nuestra IA encuentra el mejor precio, calcula impuestos reales y te entrega en tu puerta. 
+                    Sin complicaciones de aduana.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="startDemo()" 
+                            class="group flex items-center justify-center gap-x-3 bg-white text-[#0A66C2] font-semibold px-9 py-4 rounded-3xl hover:bg-slate-100 transition-all text-lg active:scale-[0.985]">
+                        <span>Probar con IA ahora</span>
+                        <i class="fa-solid fa-arrow-right group-active:translate-x-0.5 transition"></i>
+                    </button>
+                    
+                    <button onclick="document.getElementById('como-funciona').scrollIntoView({ behavior: 'smooth' })" 
+                            class="flex items-center justify-center gap-x-3 border border-white/40 hover:bg-white/10 px-8 py-4 rounded-3xl text-lg font-medium transition-all">
+                        <i class="fa-solid fa-play mr-1"></i>
+                        <span>Ver cómo funciona (1:12)</span>
+                    </button>
+                </div>
+                
+                <div class="mt-8 flex items-center gap-x-8 text-sm">
+                    <div class="flex -space-x-2">
+                        <div class="w-7 h-7 bg-white rounded-full border border-white overflow-hidden"><img src="https://i.pravatar.cc/28?img=1" class="w-full h-full object-cover"></div>
+                        <div class="w-7 h-7 bg-white rounded-full border border-white overflow-hidden"><img src="https://i.pravatar.cc/28?img=32" class="w-full h-full object-cover"></div>
+                        <div class="w-7 h-7 bg-white rounded-full border border-white overflow-hidden"><img src="https://i.pravatar.cc/28?img=47" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="text-blue-100">
+                        <span class="font-semibold text-white">12,847</span> pedidos entregados este mes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust bar -->
+    <div class="bg-white border-b py-4">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center md:justify-between items-center gap-x-10 gap-y-4 opacity-75">
+                <div class="flex items-center gap-x-2 text-xs font-medium tracking-widest">
+                    <span>CONFIANZA DE</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-semibold text-slate-500">
+                    <div class="flex items-center gap-x-1.5"><i class="fa-brands fa-amazon text-xl"></i> <span>Amazon</span></div>
+                    <div>Best Buy</div>
+                    <div>Apple</div>
+                    <div class="hidden md:block">Nike • Sephora • Walmart</div>
+                    <div class="flex items-center"><i class="fa-solid fa-shield-halved mr-1.5 text-emerald-500"></i> <span>100% Seguro</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Demo Section -->
+    <div id="demo-section" class="max-w-5xl mx-auto px-6 py-16">
+        <div class="text-center mb-10">
+            <div class="inline-block px-4 py-1 bg-blue-50 text-[#0A66C2] text-xs font-bold tracking-[1px] rounded-3xl mb-3">PRUEBA NUESTRA IA</div>
+            <h2 class="section-header">¿Qué quieres traer de Estados Unidos?</h2>
+            <p class="mt-3 text-xl text-slate-600 max-w-md mx-auto">Describe el producto. Nuestra IA hace el resto.</p>
+        </div>
+
+        <!-- Input Area -->
+        <div class="max-w-2xl mx-auto">
+            <div class="bg-white border border-slate-200 rounded-3xl p-2 shadow-sm">
+                <div class="flex flex-col">
+                    <textarea id="product-input" rows="3" 
+                              class="w-full resize-y min-h-[92px] border-0 focus:ring-0 text-lg px-6 pt-5 placeholder:text-slate-400"
+                              placeholder="Ej: iPhone 16 Pro Max 256GB desbloqueado color titanio natural, o crema hidratante CeraVe para piel seca, o zapatos Nike Air Force 1 talla 42..."></textarea>
+                    
+                    <div class="flex items-center justify-between px-4 pb-3 pt-1 border-t">
+                        <div class="flex gap-2 flex-wrap">
+                            <button onclick="useExample(0)" class="text-xs px-3.5 py-1 bg-slate-100 hover:bg-slate-200 rounded-2xl transition-colors">iPhone 16 Pro</button>
+                            <button onclick="useExample(1)" class="text-xs px-3.5 py-1 bg-slate-100 hover:bg-slate-200 rounded-2xl transition-colors">CeraVe crema</button>
+                            <button onclick="useExample(2)" class="text-xs px-3.5 py-1 bg-slate-100 hover:bg-slate-200 rounded-2xl transition-colors">Nike Air Force</button>
+                        </div>
+                        
+                        <button onclick="findBestOption()" 
+                                class="flex items-center gap-x-2.5 bg-[#0A66C2] hover:bg-[#0855A3] transition-colors text-white font-semibold px-8 py-3 rounded-3xl text-sm">
+                            <i class="fa-solid fa-magic"></i>
+                            <span>Buscar con IA</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-xs text-slate-500 mt-3">La IA analiza precios en tiempo real, impuestos colombianos y las mejores rutas de envío.</p>
+        </div>
+
+        <!-- Results Area (hidden initially) -->
+        <div id="results-area" class="hidden mt-12 max-w-5xl mx-auto">
+            <div class="flex items-center justify-between mb-6 px-1">
+                <div>
+                    <h3 class="font-semibold text-2xl">Resultados de la IA para ti</h3>
+                    <p id="results-subtitle" class="text-slate-600"></p>
+                </div>
+                <button onclick="restartDemo()" class="text-sm flex items-center gap-x-2 text-[#0A66C2] hover:underline">
+                    <i class="fa-solid fa-redo"></i> <span>Nueva búsqueda</span>
+                </button>
+            </div>
+
+            <!-- Product Recommendation -->
+            <div class="bg-white border border-slate-200 rounded-3xl p-8 modern-shadow mb-8">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Product Info -->
+                    <div class="lg:w-2/5">
+                        <div id="product-image" class="w-full aspect-video bg-slate-100 rounded-2xl mb-4 flex items-center justify-center overflow-hidden">
+                            <!-- Dynamic image set by JS -->
+                        </div>
+                        
+                        <div class="flex items-center gap-3">
+                            <div id="product-brand" class="font-semibold text-xl"></div>
+                            <div class="px-3 py-px text-xs font-bold bg-emerald-100 text-emerald-700 rounded">EN STOCK</div>
+                        </div>
+                        <div id="product-name" class="text-2xl font-semibold tracking-tight mt-1"></div>
+                        <div id="product-specs" class="text-sm text-slate-600 mt-1"></div>
+                        
+                        <div class="mt-4 flex items-center gap-x-4">
+                            <div>
+                                <div class="text-xs text-slate-500">Precio en EE.UU.</div>
+                                <div id="us-price" class="text-3xl font-semibold metric"></div>
+                            </div>
+                            <div class="text-emerald-600 text-sm font-medium flex items-center gap-x-1">
+                                <i class="fa-solid fa-arrow-trend-down"></i>
+                                <span id="savings"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="lg:w-3/5 grid grid-cols-3 gap-4">
+                        <div class="bg-slate-50 rounded-2xl p-4">
+                            <div class="text-xs uppercase tracking-widest text-slate-500 mb-1">ENTREGA ESTIMADA</div>
+                            <div class="font-semibold text-xl" id="delivery-time">5-8 días</div>
+                            <div class="text-xs text-emerald-600">a Bucaramanga</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-2xl p-4">
+                            <div class="text-xs uppercase tracking-widest text-slate-500 mb-1">AHORRO TOTAL</div>
+                            <div class="font-semibold text-xl text-emerald-600" id="total-savings"></div>
+                            <div class="text-xs">vs precio local</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-2xl p-4">
+                            <div class="text-xs uppercase tracking-widest text-slate-500 mb-1">CONFIANZA</div>
+                            <div class="flex items-center">
+                                <div class="font-semibold text-xl">4.98</div>
+                                <div class="ml-1 text-amber-400"><i class="fa-solid fa-star"></i></div>
+                            </div>
+                            <div class="text-xs">2,341 reseñas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping & Cost Breakdown -->
+            <div class="grid md:grid-cols-12 gap-6">
+                <!-- Shipping Options -->
+                <div class="md:col-span-7 bg-white border border-slate-200 rounded-3xl p-8 modern-shadow">
+                    <h4 class="font-semibold mb-5 flex items-center"><i class="fa-solid fa-truck mr-3 text-[#0A66C2]"></i> Opciones de envío recomendadas</h4>
+                    
+                    <div id="shipping-options" class="space-y-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Cost Breakdown -->
+                <div class="md:col-span-5 bg-white border border-slate-200 rounded-3xl p-8 modern-shadow">
+                    <h4 class="font-semibold mb-5">Desglose de costos totales</h4>
+                    
+                    <div class="space-y-px text-sm" id="cost-breakdown">
+                        <!-- Populated by JS -->
+                    </div>
+                    
+                    <div class="mt-6 pt-5 border-t flex justify-between items-baseline">
+                        <div>
+                            <div class="text-xs text-slate-500">COSTO TOTAL EN TU PUERTA</div>
+                            <div id="total-cost-usd" class="text-4xl font-semibold metric"></div>
+                            <div id="total-cost-cop" class="text-sm text-slate-600 font-medium"></div>
+                        </div>
+                        <button onclick="proceedToCheckout()" 
+                                class="bg-emerald-600 hover:bg-emerald-700 transition-colors text-white font-bold px-9 py-3.5 rounded-3xl text-sm flex items-center gap-x-2 shadow-lg shadow-emerald-200">
+                            <span>PROCEDER</span>
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center text-xs text-slate-500 flex items-center justify-center gap-x-2">
+                <i class="fa-solid fa-info-circle"></i> 
+                <span>Impuestos calculados según tarifas DIAN 2026 + Acuerdo de Promoción Comercial EE.UU.-Colombia. IVA 19% incluido.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it works -->
+    <div id="como-funciona" class="bg-white py-16 border-t">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="text-[#0A66C2] text-sm font-bold tracking-[1.5px]">PROCESO SIMPLE</div>
+                <h2 class="section-header mt-2">Así de fácil es traer productos de EE.UU.</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="text-center group">
+                    <div class="mx-auto w-16 h-16 flex items-center justify-center bg-blue-100 text-[#0A66C2] rounded-3xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-comment-dots text-3xl"></i>
+                    </div>
+                    <div class="font-semibold text-lg mb-2">1. Describe lo que quieres</div>
+                    <p class="text-sm text-slate-600 leading-snug">Escribe en español o inglés. "iPhone 16", "suplementos para gym", "maquillaje de Sephora".</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="mx-auto w-16 h-16 flex items-center justify-center bg-blue-100 text-[#0A66C2] rounded-3xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-robot text-3xl"></i>
+                    </div>
+                    <div class="font-semibold text-lg mb-2">2. IA encuentra la mejor opción</div>
+                    <p class="text-sm text-slate-600 leading-snug">Compara precios en Amazon, Walmart, Best Buy, eBay + calcula impuestos reales de Colombia.</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="mx-auto w-16 h-16 flex items-center justify-center bg-blue-100 text-[#0A66C2] rounded-3xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calculator text-3xl"></i>
+                    </div>
+                    <div class="font-semibold text-lg mb-2">3. Ve el precio total real</div>
+                    <p class="text-sm text-slate-600 leading-snug">Producto + envío + aranceles DIAN + IVA 19% + fees. Sin sorpresas.</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="mx-auto w-16 h-16 flex items-center justify-center bg-blue-100 text-[#0A66C2] rounded-3xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-home text-3xl"></i>
+                    </div>
+                    <div class="font-semibold text-lg mb-2">4. Recibe en tu puerta</div>
+                    <p class="text-sm text-slate-600 leading-snug">Elegimos el mejor transportador (DHL, FedEx, consolidadores). Seguimiento en tiempo real.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits -->
+    <div id="beneficios" class="max-w-5xl mx-auto px-6 py-16">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <div class="uppercase text-xs tracking-[2px] text-emerald-600 font-bold">POR QUÉ IMPORTA AI</div>
+                <h2 class="section-header mt-3 leading-none">Ahorra hasta un 45% comparado con comprar localmente</h2>
+                
+                <div class="mt-8 space-y-6">
+                    <div class="flex gap-4">
+                        <div class="mt-1"><i class="fa-solid fa-check-circle text-emerald-500 text-xl"></i></div>
+                        <div>
+                            <div class="font-semibold">Precios reales de EE.UU.</div>
+                            <div class="text-sm text-slate-600">Muchos productos son 30-60% más baratos en Estados Unidos.</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="mt-1"><i class="fa-solid fa-check-circle text-emerald-500 text-xl"></i></div>
+                        <div>
+                            <div class="font-semibold">Cálculo exacto de impuestos</div>
+                            <div class="text-sm text-slate-600">Usamos tarifas oficiales DIAN + Acuerdo EE.UU.-Colombia 2026. Sin sorpresas en aduana.</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="mt-1"><i class="fa-solid fa-check-circle text-emerald-500 text-xl"></i></div>
+                        <div>
+                            <div class="font-semibold">Consolidación inteligente</div>
+                            <div class="text-sm text-slate-600 leading-snug">Combinamos varios pedidos en un solo envío para ahorrar hasta 70% en fletes.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-9">
+                <div class="uppercase tracking-widest text-xs opacity-70 mb-2">CASO REAL • ENERO 2026</div>
+                <div class="text-2xl font-semibold leading-tight">María de Bucaramanga ahorró $287 USD en un MacBook Air M3</div>
+                
+                <div class="mt-8 grid grid-cols-2 gap-6 text-sm">
+                    <div>
+                        <div class="opacity-70">Precio local en Colombia</div>
+                        <div class="text-3xl font-semibold mt-1">$1,899 USD</div>
+                    </div>
+                    <div>
+                        <div class="opacity-70">Con ImportaAI (todo incluido)</div>
+                        <div class="text-3xl font-semibold mt-1 text-emerald-400">$1,612 USD</div>
+                        <div class="text-emerald-400 text-xs font-medium">✓ Entregado en 7 días</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <div id="precios" class="bg-slate-900 text-white py-16">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <div class="text-emerald-400 text-xs font-bold tracking-widest">PLANES</div>
+                <h2 class="section-header mt-2">Elige cómo quieres usar ImportaAI</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <!-- Free -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8">
+                    <div class="font-semibold text-xl">Explorador</div>
+                    <div class="mt-1 text-4xl font-semibold">Gratis</div>
+                    <div class="text-xs opacity-60 mt-px">para siempre</div>
+                    
+                    <ul class="mt-8 space-y-3 text-sm">
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> Búsquedas ilimitadas con IA</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> Estimaciones de costo</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> Comparación de 3 rutas</li>
+                    </ul>
+                    
+                    <button onclick="startDemo()" class="mt-8 w-full py-3 border border-white/30 hover:bg-white/5 rounded-3xl text-sm font-semibold transition">Comenzar gratis</button>
+                </div>
+                
+                <!-- Pro -->
+                <div class="bg-white text-slate-900 rounded-3xl p-8 relative -mt-2 shadow-2xl border border-white">
+                    <div class="absolute -top-3 right-6 bg-emerald-500 text-xs font-bold px-4 py-1 rounded-3xl">MÁS POPULAR</div>
+                    
+                    <div class="font-semibold text-xl">Pro</div>
+                    <div class="flex items-baseline mt-1">
+                        <span class="text-4xl font-semibold">$9.90</span>
+                        <span class="ml-1 text-sm opacity-60">/mes</span>
+                    </div>
+                    
+                    <ul class="mt-8 space-y-3 text-sm">
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-500"></i> Todo lo del plan Explorador</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-500"></i> Gestión completa de pedidos</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-500"></i> Seguimiento en tiempo real</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-500"></i> Prioridad en consolidación</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-500"></i> Soporte prioritario 24/7</li>
+                    </ul>
+                    
+                    <button onclick="subscribePro()" class="mt-8 w-full py-3 bg-[#0A66C2] text-white rounded-3xl text-sm font-semibold">Elegir Pro — 14 días gratis</button>
+                </div>
+                
+                <!-- Business -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8">
+                    <div class="font-semibold text-xl">Empresas</div>
+                    <div class="mt-1 text-4xl font-semibold">Personalizado</div>
+                    
+                    <ul class="mt-8 space-y-3 text-sm">
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> Todo lo de Pro</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> Equipo ilimitado</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> Facturación corporativa</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> API de integración</li>
+                        <li class="flex items-center gap-x-2"><i class="fa-solid fa-check text-emerald-400"></i> Gerente de cuenta dedicado</li>
+                    </ul>
+                    
+                    <button onclick="contactSales()" class="mt-8 w-full py-3 border border-white/30 hover:bg-white/5 rounded-3xl text-sm font-semibold">Contactar ventas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="max-w-3xl mx-auto px-6 py-20 text-center">
+        <h2 class="text-4xl font-display font-bold tracking-tighter">¿Listo para empezar a ahorrar?</h2>
+        <p class="mt-3 text-xl text-slate-600">Únete a más de 47,000 colombianos que ya traen productos de EE.UU. con ImportaAI.</p>
+        
+        <button onclick="startDemo()" 
+                class="mt-8 mx-auto flex items-center gap-x-3 bg-[#0A66C2] hover:bg-[#0855A3] transition-all text-white text-lg font-semibold px-10 py-4 rounded-3xl">
+            <span>Empezar mi primera búsqueda gratis</span>
+        </button>
+        
+        <div class="mt-4 text-xs text-slate-500">Sin tarjeta de crédito • Cancela cuando quieras</div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm py-12 border-t border-white/10">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-12 gap-y-10">
+            <div class="md:col-span-5">
+                <div class="flex items-center gap-x-3 mb-4">
+                    <div class="w-9 h-9 bg-white/10 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-plane text-white"></i>
+                    </div>
+                    <span class="font-display text-white text-2xl font-bold tracking-tighter">ImportaAI</span>
+                </div>
+                <div class="max-w-xs">La forma más inteligente de comprar en Estados Unidos y recibir en Colombia y Sudamérica.</div>
+                
+                <div class="mt-6 text-xs">© 2026 ImportaAI SAS • Bucaramanga, Colombia</div>
+            </div>
+            
+            <div class="md:col-span-3">
+                <div class="font-semibold text-white mb-4">Producto</div>
+                <div class="space-y-2 text-sm">
+                    <div>Cómo funciona</div>
+                    <div>Precios</div>
+                    <div>Para empresas</div>
+                    <div>API</div>
+                </div>
+            </div>
+            
+            <div class="md:col-span-4">
+                <div class="font-semibold text-white mb-4">Soporte</div>
+                <div class="grid grid-cols-2 gap-y-2 text-sm">
+                    <div>Centro de ayuda</div>
+                    <div>WhatsApp: +57 301 555 0192</div>
+                    <div>Blog</div>
+                    <div>Comunidad</div>
+                    <div>Estado del servicio</div>
+                    <div>Contacto</div>
+                </div>
+                
+                <div class="mt-8 text-xs">Hecho con ❤️ para los colombianos que aman productos de calidad de EE.UU.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" onclick="if (event.target.id === 'success-modal') hideSuccessModal()" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white max-w-md w-full mx-4 rounded-3xl overflow-hidden">
+            <div class="px-8 pt-9 pb-8 text-center">
+                <div class="mx-auto w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-check text-emerald-600 text-5xl"></i>
+                </div>
+                
+                <h3 class="text-2xl font-semibold">¡Pedido confirmado!</h3>
+                <p class="mt-2 text-slate-600">Tu pedido ha sido procesado. Recibirás un email con el tracking en los próximos minutos.</p>
+                
+                <div class="bg-slate-50 rounded-2xl p-4 mt-6 text-left text-sm">
+                    <div class="flex justify-between mb-1"><span class="text-slate-500">Número de orden</span> <span class="font-mono font-semibold">#IA-28471</span></div>
+                    <div class="flex justify-between mb-1"><span class="text-slate-500">Transportador</span> <span class="font-semibold">DHL Express</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Entrega estimada</span> <span class="font-semibold">22 de mayo</span></div>
+                </div>
+            </div>
+            
+            <div class="border-t px-8 py-5 flex gap-3">
+                <button onclick="hideSuccessModal(); restartDemo()" class="flex-1 py-3 text-sm font-semibold border rounded-3xl">Hacer otro pedido</button>
+                <button onclick="hideSuccessModal()" class="flex-1 py-3 text-sm font-semibold bg-[#0A66C2] text-white rounded-3xl">Ver seguimiento</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#0A66C2');
+        }
+        
+        let currentLanguage = 'es';
+        let currentProduct = null;
+        
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update active button styles
+            document.getElementById('lang-es').classList.toggle('bg-white', lang === 'es');
+            document.getElementById('lang-es').classList.toggle('shadow-sm', lang === 'es');
+            document.getElementById('lang-es').classList.toggle('text-slate-900', lang === 'es');
+            document.getElementById('lang-en').classList.toggle('bg-white', lang === 'en');
+            document.getElementById('lang-en').classList.toggle('shadow-sm', lang === 'en');
+            document.getElementById('lang-en').classList.toggle('text-slate-900', lang === 'en');
+            
+            // In a real app, we would translate all text. For demo, just alert
+            if (lang === 'en') {
+                alert('English version coming soon! Currently showing Spanish demo.');
+            }
+        }
+        
+        function useExample(exampleIndex) {
+            const input = document.getElementById('product-input');
+            
+            const examples = [
+                "iPhone 16 Pro Max 256GB desbloqueado color titanio natural",
+                "Crema hidratante CeraVe para piel seca y sensible 454g",
+                "Zapatos Nike Air Force 1 Low talla 42 color blanco"
+            ];
+            
+            input.value = examples[exampleIndex];
+            
+            // Auto-trigger search after a short delay
+            setTimeout(() => {
+                findBestOption();
+            }, 450);
+        }
+        
+        function findBestOption() {
+            const input = document.getElementById('product-input').value.trim();
+            if (!input) {
+                alert("Por favor describe el producto que quieres traer.");
+                return;
+            }
+            
+            // Show loading state
+            const resultsArea = document.getElementById('results-area');
+            resultsArea.classList.add('hidden');
+            
+            const loadingHTML = `
+                <div class="max-w-md mx-auto text-center py-12">
+                    <div class="inline-block ai-thinking">
+                        <i class="fa-solid fa-robot text-6xl text-[#0A66C2]"></i>
+                    </div>
+                    <div class="mt-6 text-xl font-semibold">Buscando las mejores opciones...</div>
+                    <div class="text-sm text-slate-600 mt-2">Consultando Amazon, Best Buy, Walmart y tarifas DIAN 2026</div>
+                    
+                    <div class="mt-8 max-w-xs mx-auto">
+                        <div class="h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                            <div class="h-1.5 bg-[#0A66C2] w-0 animate-[progress_2.2s_ease_forwards]" style="animation: progress 2.2s ease forwards"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Temporarily replace content
+            const originalContent = resultsArea.innerHTML;
+            resultsArea.innerHTML = loadingHTML;
+            resultsArea.classList.remove('hidden');
+            
+            // Simulate AI processing time
+            setTimeout(() => {
+                // Restore original structure
+                resultsArea.innerHTML = originalContent;
+                
+                // Generate results based on input
+                generateResults(input);
+                
+                resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 2350);
+        }
+        
+        function generateResults(query) {
+            const resultsArea = document.getElementById('results-area');
+            const lowerQuery = query.toLowerCase();
+            
+            let productData = {};
+            
+            // Smart matching
+            if (lowerQuery.includes('iphone') || lowerQuery.includes('apple') || lowerQuery.includes('pro max')) {
+                productData = {
+                    type: 'electronics',
+                    brand: 'Apple',
+                    name: 'iPhone 16 Pro Max 256GB',
+                    specs: 'Titanio Natural • Cámara 48MP • 5G • Desbloqueado',
+                    usPrice: 999,
+                    image: 'https://picsum.photos/id/1015/800/450',
+                    weight: 0.24, // kg
+                    hsCode: '8517.13.00',
+                    dutyRate: 0, // Many IT products duty free under US-Colombia TPA
+                    localPrice: 1850000, // approx COP
+                    deliveryDays: '5-7'
+                };
+            } else if (lowerQuery.includes('cerave') || lowerQuery.includes('crema') || lowerQuery.includes('hidratante') || lowerQuery.includes('skincare')) {
+                productData = {
+                    type: 'beauty',
+                    brand: 'CeraVe',
+                    name: 'Crema Hidratante Facial y Corporal',
+                    specs: '454g • Piel seca y sensible • Sin fragancia',
+                    usPrice: 18.97,
+                    image: 'https://picsum.photos/id/1060/800/450',
+                    weight: 0.55,
+                    hsCode: '3304.99.50',
+                    dutyRate: 0.05, // 5% example for cosmetics
+                    localPrice: 125000,
+                    deliveryDays: '6-9'
+                };
+            } else if (lowerQuery.includes('nike') || lowerQuery.includes('air force') || lowerQuery.includes('zapatos') || lowerQuery.includes('shoes')) {
+                productData = {
+                    type: 'fashion',
+                    brand: 'Nike',
+                    name: 'Air Force 1 Low \'07',
+                    specs: 'Talla 42 (US 9) • Blanco clásico',
+                    usPrice: 109.99,
+                    image: 'https://picsum.photos/id/1027/800/450',
+                    weight: 0.85,
+                    hsCode: '6402.99.00',
+                    dutyRate: 0.15, // Apparel ~15%
+                    localPrice: 520000,
+                    deliveryDays: '7-10'
+                };
+            } else {
+                // Generic fallback
+                productData = {
+                    type: 'general',
+                    brand: 'Producto Genérico',
+                    name: query.length > 40 ? query.substring(0, 40) + '...' : query,
+                    specs: 'Versión premium • Disponible en stock',
+                    usPrice: 149,
+                    image: 'https://picsum.photos/id/1074/800/450',
+                    weight: 0.6,
+                    hsCode: '9503.00.00',
+                    dutyRate: 0.10,
+                    localPrice: 680000,
+                    deliveryDays: '6-9'
+                };
+            }
+            
+            currentProduct = productData;
+            
+            // Populate UI
+            document.getElementById('product-image').innerHTML = `<img src="${productData.image}" class="w-full h-full object-cover" alt="${productData.name}">`;
+            document.getElementById('product-brand').innerHTML = productData.brand;
+            document.getElementById('product-name').innerHTML = productData.name;
+            document.getElementById('product-specs').innerHTML = productData.specs;
+            document.getElementById('us-price').innerHTML = '$' + productData.usPrice.toFixed(2);
+            document.getElementById('delivery-time').innerHTML = productData.deliveryDays + ' días';
+            
+            const savings = Math.round((productData.localPrice / 3800 - productData.usPrice) / (productData.localPrice / 3800) * 100);
+            document.getElementById('savings').innerHTML = savings + '% más barato';
+            document.getElementById('total-savings').innerHTML = '$' + Math.round((productData.localPrice / 3800 - productData.usPrice)).toFixed(0);
+            
+            // Shipping options
+            renderShippingOptions(productData);
+            
+            // Cost breakdown
+            renderCostBreakdown(productData);
+            
+            resultsArea.classList.remove('hidden');
+        }
+        
+        function renderShippingOptions(product) {
+            const container = document.getElementById('shipping-options');
+            container.innerHTML = '';
+            
+            const options = [
+                {
+                    name: 'DHL Express Worldwide',
+                    time: '3-5 días',
+                    price: Math.round(68 + product.weight * 42),
+                    type: 'fast',
+                    recommended: true,
+                    desc: 'Entrega puerta a puerta • Mejor para electrónicos'
+                },
+                {
+                    name: 'FedEx International Connect',
+                    time: '4-6 días',
+                    price: Math.round(52 + product.weight * 35),
+                    type: 'balanced',
+                    recommended: false,
+                    desc: 'Excelente relación precio-tiempo'
+                },
+                {
+                    name: 'USPS Priority + Consolidado',
+                    time: '9-14 días',
+                    price: Math.round(29 + product.weight * 18),
+                    type: 'economy',
+                    recommended: false,
+                    desc: 'Más económico • Ideal si no tienes prisa'
+                }
+            ];
+            
+            options.forEach((opt, index) => {
+                const div = document.createElement('div');
+                div.className = `option-card border ${opt.recommended ? 'border-[#0A66C2] bg-blue-50' : 'border-slate-200'} rounded-2xl p-4 flex justify-between items-center cursor-pointer hover:border-[#0A66C2]`;
+                if (opt.recommended) div.classList.add('active');
+                
+                div.innerHTML = `
+                    <div class="flex-1">
+                        <div class="flex items-center gap-x-2">
+                            <span class="font-semibold">${opt.name}</span>
+                            ${opt.recommended ? '<span class="px-2 py-px text-[10px] bg-[#0A66C2] text-white rounded">RECOMENDADO</span>' : ''}
+                        </div>
+                        <div class="text-xs text-slate-600 mt-0.5">${opt.desc}</div>
+                        <div class="flex items-center gap-x-4 text-xs mt-2">
+                            <span class="font-medium">${opt.time}</span>
+                            <span class="text-emerald-600 font-medium">+${Math.round(opt.price * 0.08)} USD impuestos estimados</span>
+                        </div>
+                    </div>
+                    <div class="text-right ml-4">
+                        <div class="font-semibold text-xl">$${opt.price}</div>
+                        <div class="text-xs text-slate-500">USD</div>
+                    </div>
+                `;
+                
+                div.onclick = () => selectShippingOption(div, options, index, product);
+                
+                container.appendChild(div);
+            });
+            
+            // Auto select first (recommended)
+            setTimeout(() => {
+                if (container.children[0]) {
+                    container.children[0].classList.add('active', 'border-[#0A66C2]');
+                }
+            }, 10);
+        }
+        
+        let selectedShipping = null;
+        
+        function selectShippingOption(element, allOptions, index, product) {
+            // Deselect all
+            document.querySelectorAll('#shipping-options .option-card').forEach(el => {
+                el.classList.remove('active', 'border-[#0A66C2]');
+                el.classList.add('border-slate-200');
+            });
+            
+            element.classList.add('active', 'border-[#0A66C2]');
+            element.classList.remove('border-slate-200');
+            
+            selectedShipping = allOptions[index];
+            
+            // Update cost breakdown with new shipping price
+            renderCostBreakdown(product, selectedShipping.price);
+        }
+        
+        function renderCostBreakdown(product, shippingPrice = null) {
+            const container = document.getElementById('cost-breakdown');
+            
+            if (!shippingPrice) {
+                // Default to first option
+                shippingPrice = Math.round(68 + product.weight * 42);
+            }
+            
+            const productCost = product.usPrice;
+            const insurance = Math.max(4, Math.round(productCost * 0.015));
+            const cif = productCost + shippingPrice + insurance;
+            
+            const duty = Math.round(cif * product.dutyRate);
+            const iva = Math.round((cif + duty) * 0.19);
+            const customsFee = 12; // fixed handling
+            const totalUSD = productCost + shippingPrice + insurance + duty + iva + customsFee;
+            
+            const totalCOP = Math.round(totalUSD * 3790);
+            
+            container.innerHTML = `
+                <div class="breakdown-row px-4 py-3 flex justify-between items-center rounded-xl">
+                    <span class="text-slate-600">Producto (EE.UU.)</span>
+                    <span class="font-semibold">$${productCost.toFixed(2)}</span>
+                </div>
+                <div class="breakdown-row px-4 py-3 flex justify-between items-center rounded-xl">
+                    <span class="text-slate-600">Envío internacional</span>
+                    <span class="font-semibold">$${shippingPrice}</span>
+                </div>
+                <div class="breakdown-row px-4 py-3 flex justify-between items-center rounded-xl">
+                    <span class="text-slate-600">Seguro + manejo</span>
+                    <span class="font-semibold">$${insurance}</span>
+                </div>
+                <div class="breakdown-row px-4 py-3 flex justify-between items-center rounded-xl">
+                    <span class="text-slate-600">Arancel DIAN (${(product.dutyRate * 100).toFixed(0)}%)</span>
+                    <span class="font-semibold">$${duty}</span>
+                </div>
+                <div class="breakdown-row px-4 py-3 flex justify-between items-center rounded-xl">
+                    <span class="text-slate-600">IVA 19% (Colombia)</span>
+                    <span class="font-semibold">$${iva}</span>
+                </div>
+                <div class="breakdown-row px-4 py-3 flex justify-between items-center rounded-xl">
+                    <span class="text-slate-600">Tarifa aduana / broker</span>
+                    <span class="font-semibold">$${customsFee}</span>
+                </div>
+                
+                <div class="mt-4 pt-4 border-t flex justify-between items-center px-4">
+                    <span class="font-semibold">Total estimado</span>
+                    <div class="text-right">
+                        <span class="font-bold text-2xl">$${totalUSD.toFixed(0)}</span>
+                        <div class="text-xs text-emerald-600 font-medium">≈ $${(totalCOP / 1000).toFixed(0)} mil COP</div>
+                    </div>
+                </div>
+            `;
+            
+            // Update header totals
+            document.getElementById('total-cost-usd').innerHTML = '$' + totalUSD.toFixed(0);
+            document.getElementById('total-cost-cop').innerHTML = '≈ ' + totalCOP.toLocaleString('es-CO') + ' COP';
+            
+            // Store for checkout
+            window.currentTotal = { usd: totalUSD, cop: totalCOP, product: product, shipping: shippingPrice };
+        }
+        
+        function proceedToCheckout() {
+            if (!window.currentTotal || !currentProduct) {
+                alert("Por favor realiza una búsqueda primero.");
+                return;
+            }
+            
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // In real app: would send to backend, create order, etc.
+        }
+        
+        function hideSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+        
+        function restartDemo() {
+            document.getElementById('results-area').classList.add('hidden');
+            document.getElementById('product-input').value = '';
+            document.getElementById('product-input').focus();
+            window.currentTotal = null;
+            currentProduct = null;
+        }
+        
+        function startDemo() {
+            document.getElementById('demo-section').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                document.getElementById('product-input').focus();
+            }, 900);
+        }
+        
+        function subscribePro() {
+            alert("Gracias! Te hemos registrado en el plan Pro con 14 días gratis. Revisa tu email para activar la cuenta.");
+        }
+        
+        function contactSales() {
+            alert("Un ejecutivo de ventas te contactará en las próximas 2 horas. ¡Gracias por tu interés en ImportaAI para empresas!");
+        }
+        
+        function showLoginModal() {
+            const modalHTML = `
+                <div onclick="this.remove()" class="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]">
+                    <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl max-w-sm w-full mx-4 p-8">
+                        <div class="text-center">
+                            <div class="mx-auto w-14 h-14 bg-[#0A66C2] rounded-2xl flex items-center justify-center mb-5">
+                                <i class="fa-solid fa-user text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Bienvenido de nuevo</h3>
+                            <p class="text-sm text-slate-600 mt-1">Inicia sesión para ver tus pedidos y guardar búsquedas</p>
+                        </div>
+                        
+                        <div class="mt-7 space-y-4">
+                            <div>
+                                <label class="text-xs font-medium text-slate-600">Correo electrónico</label>
+                                <input type="email" value="chris.miller@email.com" class="mt-1 w-full border rounded-2xl px-4 py-3 text-sm">
+                            </div>
+                            <div>
+                                <label class="text-xs font-medium text-slate-600">Contraseña</label>
+                                <input type="password" value="demo2026" class="mt-1 w-full border rounded-2xl px-4 py-3 text-sm">
+                            </div>
+                        </div>
+                        
+                        <button onclick="loginUser(this)" class="mt-6 w-full bg-[#0A66C2] text-white py-3.5 rounded-3xl font-semibold">Iniciar sesión</button>
+                        
+                        <div class="text-center text-xs mt-5 text-slate-500">¿No tienes cuenta? <span onclick="event.target.closest('.fixed').remove(); alert('¡Cuenta creada! Bienvenido a ImportaAI.');" class="text-[#0A66C2] cursor-pointer font-medium">Regístrate gratis</span></div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+        
+        function loginUser(element) {
+            element.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Iniciando...';
+            setTimeout(() => {
+                element.closest('.fixed').remove();
+                alert('¡Bienvenido de nuevo, Chris! Tienes 3 pedidos activos.');
+            }, 1250);
+        }
+        
+        function initializeDemo() {
+            initializeTailwind();
+            
+            // Preload one example on load for better UX
+            setTimeout(() => {
+                const input = document.getElementById('product-input');
+                if (input && !input.value) {
+                    // Uncomment to auto-fill example:
+                    // input.value = 'iPhone 16 Pro Max 256GB';
+                }
+            }, 1800);
+            
+            // Keyboard support
+            document.getElementById('product-input').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    findBestOption();
+                }
+            });
+            
+            // Easter egg: Type "demo" to auto fill iPhone
+            document.getElementById('product-input').addEventListener('input', function() {
+                if (this.value.toLowerCase() === 'demo') {
+                    this.value = 'iPhone 16 Pro Max 256GB desbloqueado';
+                    findBestOption();
+                }
+            });
+            
+            // Set initial language active
+            document.getElementById('lang-es').classList.add('bg-white', 'shadow-sm', 'text-slate-900');
+            
+            // Make sure everything is ready
+            console.log('%c[ImportaAI] Demo app initialized successfully. Ready for Colombia!', 'color:#64748b');
+        }
+        
+        // Boot the app
+        window.onload = initializeDemo;
+        
+        // Bonus: Allow clicking logo to go home
+        document.querySelector('nav .flex.items-center').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
